@@ -1,0 +1,32 @@
+[
+  {
+    "nome": "ivo pacheco",
+    "cpf": "13499201933",
+    "nomeCelular": "mi note 10",
+    "imei": "35",
+    "valorPago": "314.00",
+    "dataInicio": "2025-06-21T00:00:00.000Z",
+    "dataFinal": "2025-12-21T00:00:00.000Z",
+    "creditoFinal": "2026-01-20T00:00:00.000Z"
+  },
+  {
+    "nome": "ANTONIO SERGIO SILVESTRE COSTA DO NASCIMENTO",
+    "cpf": "137.784.009-32",
+    "nomeCelular": "mi note 10",
+    "imei": "454546464685133",
+    "valorPago": "1555.00",
+    "dataInicio": "2025-06-21T00:00:00.000Z",
+    "dataFinal": "2025-12-21T00:00:00.000Z",
+    "creditoFinal": "2026-01-20T00:00:00.000Z"
+  },
+  {
+    "nome": "Fernanda Schott",
+    "cpf": "11396629963",
+    "nomeCelular": "41987170261",
+    "imei": "35158792214526999",
+    "valorPago": "500.00",
+    "dataInicio": "2025-06-20T00:00:00.000Z",
+    "dataFinal": "2025-12-20T00:00:00.000Z",
+    "creditoFinal": "2026-01-19T00:00:00.000Z"
+  }
+]

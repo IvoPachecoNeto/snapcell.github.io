@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Admin | Snap Cell Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastrar Novo Seguro</h2>
+        <form id="formulario">
+            <input type="text" id="nome" placeholder="Nome completo" required><br>
+            <input type="text" id="cpf" placeholder="CPF" required><br>
+            <input type="text" id="celular" placeholder="Nome do celular" required><br>
+            <input type="text" id="imei" placeholder="IMEI" required><br>
+            <input type="number" id="valor" placeholder="Valor pago (R$)" required><br>
+            <input type="date" id="dataInicio" required><br>
+            <button type="submit">Salvar</button>
+        </form>
+        <p id="mensagem" style="color:green;"></p>
+    </div>
+
+    <script>
+        if (localStorage.getItem('logado') !== 'sim') {
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('formulario').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const cpf = document.getElementById('cpf').value;
+            const nomeCelular = document.getElementById('celular').value;
+            const imei = document.getElementById('imei').value;
+            const valorPago = parseFloat(document.getElementById('valor').value).toFixed(2);
+            const dataInicio = new Date(document.getElementById('dataInicio').value);
+
+            const dataFinal = new Date(dataInicio);
+            dataFinal.setMonth(dataFinal.getMonth() + 6);
+            const creditoFinal = new Date(dataFinal);
+            creditoFinal.setDate(creditoFinal.getDate() + 30);
+
+            const novoCadastro = {
+                nome, cpf, nomeCelular, imei, valorPago,
+                dataInicio: dataInicio.toISOString(),
+                dataFinal: dataFinal.toISOString(),
+                creditoFinal: creditoFinal.toISOString()
+            };
+
+            let dados = [];
+            try {
+                const res = await fetch('../data/dados.json');
+                dados = await res.json();
+            } catch (e) {}
+
+            dados.push(novoCadastro);
+
+            const blob = new Blob([JSON.stringify(dados, null, 2)], {type : 'application/json'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'dados.json';
+            a.click();
+
+            document.getElementById('mensagem').innerText = "Cadastro salvo! Baixe e substitua o arquivo dados.json na pasta /data.";
+        });
+    </script>
+</body>
+</html>
